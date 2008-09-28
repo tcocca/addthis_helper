@@ -1,0 +1,64 @@
+AddthisHelper v.1.0
+=============
+
+The Addthis Helper is a plugin to make the integration of the Addthis social bookmarking tool 
+(www.addthis.com) easy in a rails project.
+
+All this plugin provides are 2 helper methods for the addthis tool.  There are no public files.
+
+The first method provided is for the default addthis widget to open the addthis popup.
+
+The second is for the addthis customizeable widget.
+
+
+
+Example
+=======
+
+Both methods take 4  parameters.  The first two are madatory and the second two are optional.
+The first param is your addthis username (the addthis_pub variable)
+The second param is the source for the image
+The third param is an optional set of image attributes (alt tag, border, etc...)
+The fourth param is an optional set of addthis variables.
+
+To use the STANDARD addthis widget call the following in your view:
+
+<%= add_this('username', 'http://s9.addthis.com/button0-share.gif') %>
+
+The add_this method take 4 parameters.  The first two are madatory and the second two are optional.
+The first param is your addthis_pub username
+The second param is the source for the image
+
+To use the optional params see the following:
+
+<%= add_this('username', 'http://s9.addthis.com/button0-share.gif', {:width => 83, :height => 16, :border => 0, :alt => 'Bookmark and Share' }, {:addthis_title => 'Page Title', :addthis_url => 'http://www.sitename.com/'}) %>
+
+In the standard method only 2 variables apply.
+
+addthis_url and addthis_title
+
+addthis_url is the URL you want to pass to the widget for the bookmark.  
+By default (not passed in) this is: location.href
+Generally you should leave this out unless you want to put in a specific URL to track the page views that come back from a social bookmarking site.
+
+addthis_title is the Title you want to pass to the widget for the bookmark.
+By default (not passed in) this is: document.title
+Generally this should not be passed in either unless you want to change the title of the page in the bookmarking tool.
+
+So in general with the standard widget the 4 param (addthis variables) can be completely left out.
+
+
+To use the CUSTOMIZEABLE addthis widget call the following in your view:
+
+<%= add_this_custom('username', 'http://s9.addthis.com/button0-share.gif', {:width => 83, :height => 16, :border => 0, :alt => 'Bookmark and Share' }, {:addthis_title => 'Page Title'}) %>
+
+The four params are the same as the standard widget except the fourth param in the customizeable widget accepts more values.
+In addition to addthis_title and addthis_url see the following page for the complete list of addthis variables.
+http://www.addthis.com/customization.php
+
+Name the keys in the options hash the same name as the variable.
+(All the plugin does is convert the key to a string and pass it as the variable name along with the value).
+All values should be passed in as strings except for addthis_offset_top and addthis_offset_left which are integers.
+
+=======
+Copyright (c) 2008 Tom Cocca tom dot cocca at gmail dot com, released under the MIT license
